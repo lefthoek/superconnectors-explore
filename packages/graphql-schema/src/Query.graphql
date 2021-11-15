@@ -1,0 +1,5 @@
+type Query {
+  getAllSuperconnectors: [Superconnector]
+  getAllAsks: [Ask]
+  getGameData: [GameAsk]
+}

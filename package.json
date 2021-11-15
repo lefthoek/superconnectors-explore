@@ -1,0 +1,47 @@
+{
+  "name": "@lefthoek/superconnectors",
+  "private": true,
+  "version": "0.0.1",
+  "description": "## Rationale",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "prepare": "husky install",
+    "codegen": "graphql-codegen --config codegen.yml",
+    "docs": "docsify serve docs",
+    "prebuild:packages": "yarn codegen",
+    "build:schema": "yarn workspace @superconnectors/graphql-schema build",
+    "build:types": "yarn workspace @superconnectors/types build",
+    "build:packages": "yarn build:schema && yarn build:types",
+    "build:api": "yarn workspace @superconnectors/api build",
+    "build:services": "yarn build:api",
+    "deploy:api": "yarn workspace @superconnectors/api deploy",
+    "deploy:services": "yarn deploy:api"
+  },
+  "author": "Jan Hein Hoogstad",
+  "license": "MIT",
+  "devDependencies": {
+    "@graphql-codegen/cli": "^2.3.0",
+    "@graphql-codegen/introspection": "^2.1.0",
+    "@graphql-codegen/typescript": "^2.4.0",
+    "@graphql-codegen/typescript-document-nodes": "^2.2.0",
+    "@graphql-codegen/typescript-resolvers": "^2.4.1",
+    "@typescript-eslint/eslint-plugin": "^5.4.0",
+    "@typescript-eslint/parser": "^5.4.0",
+    "docsify": "^4.12.1",
+    "eslint": "^8.2.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-config-standard": "^16.0.3",
+    "eslint-plugin-import": "^2.25.3",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^5.1.1",
+    "husky": "^7.0.4",
+    "lehre": "^1.5.0",
+    "remark-cli": "^10.0.0",
+    "remark-html": "^15.0.0"
+  },
+  "workspaces": ["api", "packages/graphql-schema", "packages/types"]
+}

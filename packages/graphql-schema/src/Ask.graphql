@@ -1,0 +1,19 @@
+interface BaseAsk {
+  team: String!
+  summary: String!
+  points: Int!
+}
+
+type Ask implements BaseAsk {
+  team: String!
+  summary: String!
+  points: Int!
+}
+
+type GameAsk implements BaseAsk {
+  resolved: Boolean!
+  superconnectors: [Superconnector]!
+  team: String!
+  summary: String!
+  points: Int!
+}

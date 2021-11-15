@@ -1,0 +1,39 @@
+{
+  "name": "@superconnectors/api",
+  "private": true,
+  "version": "0.9.0",
+  "description": "## Rationale",
+  "main": "handler.ts",
+  "author": "Jan Hein Hoogstad",
+  "license": "MIT",
+  "scripts": {
+    "prebuild": "rimraf dist",
+    "build": "tsc",
+    "deploy": "serverless deploy -s ${SLS_ENVIRONMENT:-dev}"
+  },
+  "devDependencies": {
+    "@types/jws": "^3.2.4",
+    "@types/ramda": "^0.27.49",
+    "@types/uuid": "^8.3.1",
+    "@types/voca": "^1.4.1",
+    "docsify": "^4.12.1",
+    "husky": "^7.0.4",
+    "rimraf": "^3.0.2",
+    "serverless": "^2.66.1",
+    "serverless-plugin-monorepo": "^0.10.0",
+    "typescript": "^4.4.4"
+  },
+  "dependencies": {
+    "@superconnectors/graphql-schema": "*",
+    "@superconnectors/types": "*",
+    "apollo-server-lambda": "^3.5.0",
+    "aws-sdk": "^2.1028.0",
+    "graphql": "^16.0.1",
+    "graphql-import-node": "^0.0.4",
+    "graphql-scalars": "^1.13.2",
+    "jws": "^4.0.0",
+    "module-alias": "^2.2.2",
+    "uuid": "^8.3.2",
+    "voca": "^1.4.0"
+  }
+}

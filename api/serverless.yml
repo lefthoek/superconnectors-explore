@@ -1,0 +1,34 @@
+service: superconnectors-api
+variablesResolutionMode: 20210326
+plugins:
+  - serverless-plugin-monorepo
+custom:
+  parameter_prefix: superconnectors/${opt:stage}
+  function_prefix: superconnectors-${opt:stage}
+  api: ${self:custom.function_prefix}-graphql
+
+provider:
+  name: aws
+  runtime: nodejs14.x
+  region: eu-west-1
+  lambdaHashingVersion: 20201221
+
+functions:
+  graphql: 
+    handler: dist/handler.graphql
+    events:
+      - http:
+          path: graphql
+          method: post
+          cors: true
+      - http:
+          path: graphql
+          method: get
+          cors: true
+      - http:
+          path: playground
+          method: any
+          cors: true
+    environment:
+      SLS_ENVIRONMENT: ${opt:stage}
+      HANDLER_NAME: ${self:custom.api}

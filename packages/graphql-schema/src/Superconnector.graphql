@@ -1,0 +1,5 @@
+type Superconnector {
+  firstName: String!
+  lastName: String!
+  contestantId: Int!
+}
