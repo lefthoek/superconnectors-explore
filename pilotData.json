@@ -1,0 +1,232 @@
+[
+  {
+    "resolved": true,
+    "superconnectors": [
+      {
+        "last_name": "Ferwerda",
+        "contestant_id": 17,
+        "first_name": "Auke"
+      },
+      {
+        "first_name": "Wilbert",
+        "contestant_id": 18,
+        "last_name": "Lek"
+      }
+    ],
+    "team": "Addoptics",
+    "points": 73,
+    "summary": "Decision Maker Automotive Industry"
+  },
+  {
+    "summary": "IT Country Manager Barcelona",
+    "superconnectors": [
+      {
+        "last_name": "Scheffer",
+        "first_name": "Hans",
+        "contestant_id": 13
+      },
+      {
+        "last_name": "Van Den Boomgaard",
+        "contestant_id": 22,
+        "first_name": "Marie José"
+      },
+      {
+        "first_name": "Marjolein",
+        "contestant_id": 8,
+        "last_name": "Boer"
+      }
+    ],
+    "resolved": true,
+    "team": "Bereik",
+    "points": 80
+  },
+  {
+    "team": "Biond Solutions",
+    "superconnectors": [
+      {
+        "contestant_id": 5,
+        "last_name": "Halbe",
+        "first_name": "Hendrik"
+      },
+      {
+        "last_name": "Bakker",
+        "first_name": "Maurice",
+        "contestant_id": 9
+      },
+      {
+        "first_name": "Youri",
+        "contestant_id": 21,
+        "last_name": "Doeleman"
+      },
+      {
+        "last_name": "O'Callahan",
+        "contestant_id": 15,
+        "first_name": "Esther"
+      }
+    ],
+    "summary": "Visionary Deep Pocket Investors",
+    "points": 51,
+    "resolved": true
+  },
+  {
+    "summary": "HR Leaders and Executives",
+    "team": "College Life",
+    "superconnectors": [
+      {
+        "last_name": "Vas Dias",
+        "first_name": "Ron",
+        "contestant_id": 24
+      },
+      {
+        "last_name": "Van Den Boomgaard",
+        "first_name": "Marie José",
+        "contestant_id": 22
+      },
+      {
+        "first_name": "Gianluca",
+        "last_name": "Bellan",
+        "contestant_id": 11
+      }
+    ],
+    "resolved": true,
+    "points": 65
+  },
+  {
+    "resolved": true,
+    "points": 40,
+    "summary": "Pilot Partners Healthcare",
+    "team": "Health-Thing",
+    "superconnectors": [
+      {
+        "contestant_id": 4,
+        "last_name": "Appeldoorn",
+        "first_name": "Frank"
+      },
+      {
+        "last_name": "Bakker",
+        "contestant_id": 9,
+        "first_name": "Maurice"
+      },
+      {
+        "first_name": "Hans",
+        "last_name": "Scheffer",
+        "contestant_id": 13
+      }
+    ]
+  },
+  {
+    "summary": "Introductions C-Level Hotel Chains",
+    "team": "Moonback",
+    "superconnectors": [
+      {
+        "first_name": "Hendrik",
+        "last_name": "Halbe",
+        "contestant_id": 5
+      },
+      {
+        "first_name": "Marjolein",
+        "contestant_id": 8,
+        "last_name": "Boer"
+      },
+      {
+        "contestant_id": 15,
+        "last_name": "O'Callahan",
+        "first_name": "Esther"
+      }
+    ],
+    "resolved": true,
+    "points": 87
+  },
+  {
+    "summary": "Secure Sensitive Communications Pilots",
+    "resolved": true,
+    "superconnectors": [
+      {
+        "contestant_id": 16,
+        "first_name": "Ton",
+        "last_name": "van 't Noordende"
+      },
+      {
+        "first_name": "Ronald",
+        "contestant_id": 23,
+        "last_name": "van Raaij"
+      },
+      {
+        "last_name": "Boer",
+        "contestant_id": 8,
+        "first_name": "Marjolein"
+      }
+    ],
+    "points": 85,
+    "team": "SHRLQ"
+  },
+  {
+    "superconnectors": [
+      {
+        "first_name": "Hendrik",
+        "last_name": "Halbe",
+        "contestant_id": 5
+      },
+      {
+        "contestant_id": 15,
+        "first_name": "Esther",
+        "last_name": "O'Callahan"
+      },
+      {
+        "contestant_id": 21,
+        "last_name": "Doeleman",
+        "first_name": "Youri"
+      }
+    ],
+    "resolved": true,
+    "team": "Savvy Store",
+    "points": 80,
+    "summary": "Mentor for Brand Building"
+  },
+  {
+    "team": "Skoon World",
+    "resolved": true,
+    "points": 53,
+    "superconnectors": [
+      {
+        "last_name": "Ferwerda",
+        "contestant_id": 17,
+        "first_name": "Auke"
+      },
+      {
+        "first_name": "Hendrik",
+        "last_name": "Halbe",
+        "contestant_id": 5
+      },
+      {
+        "first_name": "Esther",
+        "last_name": "O'Callahan",
+        "contestant_id": 15
+      }
+    ],
+    "summary": "C-Level Connections Energy Organizations"
+  },
+  {
+    "resolved": true,
+    "points": 53,
+    "superconnectors": [
+      {
+        "first_name": "Hans",
+        "last_name": "Scheffer",
+        "contestant_id": 13
+      },
+      {
+        "last_name": "Van Den Boomgaard",
+        "first_name": "Marie José",
+        "contestant_id": 22
+      },
+      {
+        "first_name": "Marjolein",
+        "contestant_id": 8,
+        "last_name": "Boer"
+      }
+    ],
+    "team": "The Selection Lab",
+    "summary": "Find Teamlead Sales"
+  }
+]
