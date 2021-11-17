@@ -11,11 +11,27 @@ provider:
   name: aws
   runtime: nodejs14.x
   region: eu-west-1
+  iam:
+    role:
+      statements:
+        - Effect: Allow
+          Action: dynamodb:*
+          Resource:
+            - !Sub "${ConnectionsTable.Arn}"
+            - !Sub "${SubscriptionsTable.Arn}"
+            - !Sub "${SubscriptionsTable.Arn}/index/*"
+        - Effect: Allow
+          Action: execute-api:*
+          Resource:
+            - !Sub 'arn:aws:execute-api:${AWS::Region}:${AWS::AccountId}:${WebsocketsApi}/*'
   lambdaHashingVersion: 20201221
+  environment:
+    SUBSCRIPTIONS_TABLE: ws-subscriptions
+    CONNECTIONS_TABLE: ws-connections
 
 functions:
   graphql: 
-    handler: dist/handler.graphql
+    handler: dist/handlers.query
     events:
       - http:
           path: graphql
@@ -32,3 +48,69 @@ functions:
     environment:
       SLS_ENVIRONMENT: ${opt:stage}
       HANDLER_NAME: ${self:custom.api}
+  subscription:
+    handler: dist/handlers.subscription
+    events:
+      - websocket:
+          route: $connect
+      - websocket:
+          route: $disconnect
+      - websocket:
+          route: $default
+
+
+resources:
+  Resources:
+    # Table for tracking connections
+    ConnectionsTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: ${self:provider.environment.CONNECTIONS_TABLE}
+        AttributeDefinitions:
+          - AttributeName: id
+            AttributeType: S
+        KeySchema:
+          - AttributeName: id
+            KeyType: HASH
+        ProvisionedThroughput:
+          ReadCapacityUnits: 1
+          WriteCapacityUnits: 1
+    # Table for tracking subscriptions
+    SubscriptionsTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: ${self:provider.environment.SUBSCRIPTIONS_TABLE}
+        AttributeDefinitions:
+          - AttributeName: id
+            AttributeType: S
+          - AttributeName: topic
+            AttributeType: S
+          - AttributeName: connectionId
+            AttributeType: S
+        KeySchema:
+          - AttributeName: id
+            KeyType: HASH
+          - AttributeName: topic
+            KeyType: RANGE
+        GlobalSecondaryIndexes:
+          - IndexName: ConnectionIndex
+            KeySchema:
+              - AttributeName: connectionId
+                KeyType: HASH
+            Projection:
+              ProjectionType: ALL
+            ProvisionedThroughput:
+              ReadCapacityUnits: 1
+              WriteCapacityUnits: 1
+          - IndexName: TopicIndex
+            KeySchema:
+              - AttributeName: topic
+                KeyType: HASH
+            Projection:
+              ProjectionType: ALL
+            ProvisionedThroughput:
+              ReadCapacityUnits: 1
+              WriteCapacityUnits: 1
+        ProvisionedThroughput:
+          ReadCapacityUnits: 1
+          WriteCapacityUnits: 1

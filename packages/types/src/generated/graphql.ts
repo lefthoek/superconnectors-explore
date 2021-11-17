@@ -5,6 +5,7 @@ export type InputMaybe<T> = Maybe<T>;
 export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
 export type MakeOptional<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]?: Maybe<T[SubKey]> };
 export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]: Maybe<T[SubKey]> };
+export type RequireFields<T, K extends keyof T> = { [X in Exclude<keyof T, K>]?: T[X] } & { [P in K]-?: NonNullable<T[P]> };
 /** All built-in and custom scalars, mapped to their actual values */
 export type Scalars = {
   ID: string;
@@ -38,10 +39,23 @@ export type GameAsk = BaseAsk & {
   team: Scalars['String'];
 };
 
+export type Mutation = {
+  updateAsk: Maybe<Scalars['GUID']>;
+};
+
+
+export type MutationUpdateAskArgs = {
+  askId: InputMaybe<Scalars['GUID']>;
+};
+
 export type Query = {
   getAllAsks: Maybe<Array<Maybe<Ask>>>;
   getAllSuperconnectors: Maybe<Array<Maybe<Superconnector>>>;
   getGameData: Maybe<Array<Maybe<GameAsk>>>;
+};
+
+export type Subscription = {
+  gameData: Maybe<Scalars['String']>;
 };
 
 export type Superconnector = {
@@ -128,8 +142,10 @@ export type ResolversTypes = ResolversObject<{
   GameAsk: ResolverTypeWrapper<GameAsk>;
   Int: ResolverTypeWrapper<Scalars['Int']>;
   JSON: ResolverTypeWrapper<Scalars['JSON']>;
+  Mutation: ResolverTypeWrapper<{}>;
   Query: ResolverTypeWrapper<{}>;
   String: ResolverTypeWrapper<Scalars['String']>;
+  Subscription: ResolverTypeWrapper<{}>;
   Superconnector: ResolverTypeWrapper<Superconnector>;
   URL: ResolverTypeWrapper<Scalars['URL']>;
 }>;
@@ -144,8 +160,10 @@ export type ResolversParentTypes = ResolversObject<{
   GameAsk: GameAsk;
   Int: Scalars['Int'];
   JSON: Scalars['JSON'];
+  Mutation: {};
   Query: {};
   String: Scalars['String'];
+  Subscription: {};
   Superconnector: Superconnector;
   URL: Scalars['URL'];
 }>;
@@ -185,10 +203,18 @@ export interface JsonScalarConfig extends GraphQLScalarTypeConfig<ResolversTypes
   name: 'JSON';
 }
 
+export type MutationResolvers<ContextType = ApolloContext, ParentType extends ResolversParentTypes['Mutation'] = ResolversParentTypes['Mutation']> = ResolversObject<{
+  updateAsk: Resolver<Maybe<ResolversTypes['GUID']>, ParentType, ContextType, RequireFields<MutationUpdateAskArgs, never>>;
+}>;
+
 export type QueryResolvers<ContextType = ApolloContext, ParentType extends ResolversParentTypes['Query'] = ResolversParentTypes['Query']> = ResolversObject<{
   getAllAsks: Resolver<Maybe<Array<Maybe<ResolversTypes['Ask']>>>, ParentType, ContextType>;
   getAllSuperconnectors: Resolver<Maybe<Array<Maybe<ResolversTypes['Superconnector']>>>, ParentType, ContextType>;
   getGameData: Resolver<Maybe<Array<Maybe<ResolversTypes['GameAsk']>>>, ParentType, ContextType>;
+}>;
+
+export type SubscriptionResolvers<ContextType = ApolloContext, ParentType extends ResolversParentTypes['Subscription'] = ResolversParentTypes['Subscription']> = ResolversObject<{
+  gameData: SubscriptionResolver<Maybe<ResolversTypes['String']>, "gameData", ParentType, ContextType>;
 }>;
 
 export type SuperconnectorResolvers<ContextType = ApolloContext, ParentType extends ResolversParentTypes['Superconnector'] = ResolversParentTypes['Superconnector']> = ResolversObject<{
@@ -209,7 +235,9 @@ export type Resolvers<ContextType = ApolloContext> = ResolversObject<{
   GUID: GraphQLScalarType;
   GameAsk: GameAskResolvers<ContextType>;
   JSON: GraphQLScalarType;
+  Mutation: MutationResolvers<ContextType>;
   Query: QueryResolvers<ContextType>;
+  Subscription: SubscriptionResolvers<ContextType>;
   Superconnector: SuperconnectorResolvers<ContextType>;
   URL: GraphQLScalarType;
 }>;

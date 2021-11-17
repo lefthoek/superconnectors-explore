@@ -1,0 +1,12 @@
+{
+  "name": "testws",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Jan Hein Hoogstad",
+  "license": "MIT",
+  "type": "module",
+  "dependencies": {
+    "graphql-ws": "^5.5.5",
+    "ws": "^8.2.3"
+  }
+}

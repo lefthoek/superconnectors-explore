@@ -12,7 +12,7 @@ const server = new ApolloServer({
   plugins: [ApolloServerPluginLandingPageGraphQLPlayground()],
 });
 
-export const graphql = server.createHandler({
+const query = server.createHandler({
   expressGetMiddlewareOptions: {
     cors: {
       origin: "*",
@@ -21,4 +21,4 @@ export const graphql = server.createHandler({
   },
 });
 
-export default graphql;
+export default query;
