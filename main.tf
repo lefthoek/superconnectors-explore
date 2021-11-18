@@ -4,14 +4,14 @@ variable "TFC_WORKSPACE_NAME" {
 }
 
 locals {
+  project_prefix = "superconnectors"
   lambda_basic_execution_role = "arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
-  environment_name            = var.TFC_WORKSPACE_NAME != "" ?
-trimprefix(var.TFC_WORKSPACE_NAME, "superconnectors") : terraform.workspace
+  environment_name            = var.TFC_WORKSPACE_NAME != "" ? trimprefix(var.TFC_WORKSPACE_NAME, "superconnectors-") : terraform.workspace
 }
 
 terraform {
   backend "remote" {
-    organization = "superconnectors"
+    organization = "lefthoek"
     workspaces {
       prefix = "superconnectors-"
     }
@@ -29,4 +29,13 @@ terraform {
 
 provider "aws" {
   region = "eu-west-1"
+}
+
+module "public-spaces-api" {
+  source           = "./infra/api"
+  environment_name = local.environment_name
+  project_prefix   = local.project_prefix
+  policies = [
+    local.lambda_basic_execution_role
+  ]
 }
