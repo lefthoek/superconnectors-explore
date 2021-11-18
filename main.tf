@@ -31,7 +31,7 @@ provider "aws" {
   region = "eu-west-1"
 }
 
-module "public-spaces-api" {
+module "lefthoek-api" {
   source           = "./infra/api"
   environment_name = local.environment_name
   project_prefix   = local.project_prefix
