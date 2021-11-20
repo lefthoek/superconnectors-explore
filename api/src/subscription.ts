@@ -41,6 +41,9 @@ const schema = makeExecutableSchema({
   resolvers,
 });
 
+console.log(process.env.CONNECTIONS_TABLE);
+console.log(process.env.SUBSCRIPTIONS_TABLE);
+
 const instance = createInstance({
   schema,
   tableNames: {
