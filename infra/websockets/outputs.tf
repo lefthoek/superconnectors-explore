@@ -13,3 +13,11 @@ output "connections_table_name" {
 output "subscriptions_table_name" {
   value = local.subscriptions_table
 }
+
+output "connections_table_arn" {
+  value = aws_dynamodb_table.connections_table.arn
+}
+
+output "subscriptions_table_arn" {
+  value = aws_dynamodb_table.subscriptions_table_arn
+}
