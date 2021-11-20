@@ -19,5 +19,5 @@ output "connections_table_arn" {
 }
 
 output "subscriptions_table_arn" {
-  value = aws_dynamodb_table.subscriptions_table_arn
+  value = aws_dynamodb_table.subscriptions_table.arn
 }
