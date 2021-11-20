@@ -11,7 +11,7 @@ resource "aws_iam_policy" "subscriptions_table_access" {
 }
 
 resource "aws_iam_policy" "apigateway_access" {
-  name = "${local.prefix}-apigateway-access-policy"
+  name = "${var.prefix}-apigateway-access-policy"
   path   = "/"
   policy = data.aws_iam_policy_document.api_gateway_access.json
 }
