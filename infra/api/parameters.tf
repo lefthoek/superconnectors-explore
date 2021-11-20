@@ -15,3 +15,9 @@ resource "aws_ssm_parameter" "subscriptions_table" {
   type        = "SecureString"
   value       = module.websockets.subscriptions_table_name
 }
+
+resource "aws_ssm_parameter" "apigateway_id" {
+  name        = "${local.parameter_prefix}/apigateway_id"
+  type        = "SecureString"
+  value       = module.websockets.apigateway_id
+}

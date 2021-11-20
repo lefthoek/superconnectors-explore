@@ -9,3 +9,9 @@ resource "aws_iam_policy" "subscriptions_table_access" {
   path   = "/"
   policy = data.aws_iam_policy_document.subscriptions_table_access.json
 }
+
+resource "aws_iam_policy" "apigateway_access" {
+  name = "${local.prefix}-apigateway-access-policy"
+  path   = "/"
+  policy = data.aws_iam_policy_document.api_gateway_access.json
+}

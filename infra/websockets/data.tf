@@ -22,3 +22,14 @@ data "aws_iam_policy_document" "subscriptions_table_access" {
     ]
   }
 }
+
+data "aws_iam_policy_document" "api_gateway_access" {
+  statement {
+    actions = ["execute-api:*"]
+
+    resources = [
+      aws_apigatewayv2_api.ws.execution_arn,
+      "${aws_apigatewayv2_api.ws.execution_arn}/*"
+    ]
+  }
+}
