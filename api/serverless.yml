@@ -6,6 +6,7 @@ custom:
   parameter_prefix: superconnectors/${opt:stage}
   function_prefix: superconnectors-${opt:stage}
   api: ${self:custom.function_prefix}-graphql
+  apigateway_id: ${ssm:/${self:custom.parameter_prefix}/api/apigateway_id}
   role: ${ssm:/${self:custom.parameter_prefix}/api/role}
   connections_table: ${ssm:/${self:custom.parameter_prefix}/api/connections_table}
   subscriptions_table: ${ssm:/${self:custom.parameter_prefix}/api/subscriptions_table}
@@ -14,8 +15,10 @@ provider:
   name: aws
   runtime: nodejs14.x
   region: eu-west-1
+  apiGateway:
+    websocketApiId: ${self:custom.apigateway_id}
   iam:
-    role: ${ssm:/${self:custom.parameter_prefix}/api/role}
+    role: ${self:custom.role}
   lambdaHashingVersion: 20201221
 
 functions:

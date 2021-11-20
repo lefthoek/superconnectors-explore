@@ -33,3 +33,13 @@ data "aws_iam_policy_document" "api_gateway_access" {
     ]
   }
 }
+
+data "aws_servicequotas_service_quota" "throttling_burst_limit" {
+  service_code = "apigateway"
+  quota_code   = "L-CDF5615A"
+}
+
+data "aws_servicequotas_service_quota" "throttling_rate_limit" {
+  service_code = "apigateway"
+  quota_code   = "L-8A5B8E43"
+}
