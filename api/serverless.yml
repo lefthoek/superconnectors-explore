@@ -6,20 +6,16 @@ custom:
   parameter_prefix: superconnectors/${opt:stage}
   function_prefix: superconnectors-${opt:stage}
   api: ${self:custom.function_prefix}-graphql
+  role: ${ssm:/${self:custom.parameter_prefix}/api/role}
 
 provider:
   name: aws
   runtime: nodejs14.x
   region: eu-west-1
   iam:
+    role: ${ssm:/${self:custom.parameter_prefix}/api/role}
     role:
       statements:
-        - Effect: Allow
-          Action: dynamodb:*
-          Resource:
-            - !Sub "${ConnectionsTable.Arn}"
-            - !Sub "${SubscriptionsTable.Arn}"
-            - !Sub "${SubscriptionsTable.Arn}/index/*"
         - Effect: Allow
           Action: execute-api:*
           Resource:
@@ -57,60 +53,3 @@ functions:
           route: $disconnect
       - websocket:
           route: $default
-
-
-resources:
-  Resources:
-    # Table for tracking connections
-    ConnectionsTable:
-      Type: AWS::DynamoDB::Table
-      Properties:
-        TableName: ${self:provider.environment.CONNECTIONS_TABLE}
-        AttributeDefinitions:
-          - AttributeName: id
-            AttributeType: S
-        KeySchema:
-          - AttributeName: id
-            KeyType: HASH
-        ProvisionedThroughput:
-          ReadCapacityUnits: 1
-          WriteCapacityUnits: 1
-    # Table for tracking subscriptions
-    SubscriptionsTable:
-      Type: AWS::DynamoDB::Table
-      Properties:
-        TableName: ${self:provider.environment.SUBSCRIPTIONS_TABLE}
-        AttributeDefinitions:
-          - AttributeName: id
-            AttributeType: S
-          - AttributeName: topic
-            AttributeType: S
-          - AttributeName: connectionId
-            AttributeType: S
-        KeySchema:
-          - AttributeName: id
-            KeyType: HASH
-          - AttributeName: topic
-            KeyType: RANGE
-        GlobalSecondaryIndexes:
-          - IndexName: ConnectionIndex
-            KeySchema:
-              - AttributeName: connectionId
-                KeyType: HASH
-            Projection:
-              ProjectionType: ALL
-            ProvisionedThroughput:
-              ReadCapacityUnits: 1
-              WriteCapacityUnits: 1
-          - IndexName: TopicIndex
-            KeySchema:
-              - AttributeName: topic
-                KeyType: HASH
-            Projection:
-              ProjectionType: ALL
-            ProvisionedThroughput:
-              ReadCapacityUnits: 1
-              WriteCapacityUnits: 1
-        ProvisionedThroughput:
-          ReadCapacityUnits: 1
-          WriteCapacityUnits: 1
