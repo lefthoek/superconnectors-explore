@@ -5,7 +5,7 @@ resource "aws_apigatewayv2_api" "ws" {
 }
 
 resource "aws_apigatewayv2_deployment" "ws" {
-  api_id      = aws_apigatewayv2_route.example.api_id
+  api_id      = aws_apigatewayv2_route.ws.id
   description = "Example deployment"
 
   lifecycle {
