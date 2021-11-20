@@ -7,9 +7,9 @@ output "subscriptions_table_access_policy" {
 }
 
 output "connections_table_name" {
-  value = local.subscriptions_table_name
+  value = local.subscriptions_table
 }
 
 output "subscriptions_table_name" {
-  value = local.subscriptions_table_name
+  value = local.subscriptions_table
 }
