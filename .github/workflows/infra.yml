@@ -1,6 +1,7 @@
 on:
   push:
     branches:
+      - infra
       - main
       - stable
   pull_request:
@@ -18,6 +19,7 @@ jobs:
           TF_WORKSPACE: |
             stable:prod
             main:dev
+            infra:dev
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v2
         with:
