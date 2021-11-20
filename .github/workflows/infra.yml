@@ -1,6 +1,7 @@
 on:
   push:
     branches:
+      - infra
       - main
       - stable
   pull_request:
