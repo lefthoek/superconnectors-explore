@@ -7,6 +7,8 @@ custom:
   function_prefix: superconnectors-${opt:stage}
   api: ${self:custom.function_prefix}-graphql
   role: ${ssm:/${self:custom.parameter_prefix}/api/role}
+  connections_table: ${ssm:/${self:custom.parameter_prefix}/api/connections_table}
+  subscriptions_table: ${ssm:/${self:custom.parameter_prefix}/api/subscriptions_table}
 
 provider:
   name: aws
@@ -14,16 +16,7 @@ provider:
   region: eu-west-1
   iam:
     role: ${ssm:/${self:custom.parameter_prefix}/api/role}
-    role:
-      statements:
-        - Effect: Allow
-          Action: execute-api:*
-          Resource:
-            - !Sub 'arn:aws:execute-api:${AWS::Region}:${AWS::AccountId}:${WebsocketsApi}/*'
   lambdaHashingVersion: 20201221
-  environment:
-    SUBSCRIPTIONS_TABLE: ws-subscriptions
-    CONNECTIONS_TABLE: ws-connections
 
 functions:
   graphql: 
@@ -53,3 +46,6 @@ functions:
           route: $disconnect
       - websocket:
           route: $default
+    environment:
+      SUBSCRIPTIONS_TABLE: ${self:custom.subscriptions_table}
+      CONNECTIONS_TABLE: ${self:custom.connections_table}
