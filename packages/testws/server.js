@@ -3,7 +3,7 @@ import { createClient } from "graphql-ws";
 
 const client = createClient({
   webSocketImpl: ws,
-  url: "wss://v02eprbv80.execute-api.eu-west-1.amazonaws.com/dev",
+  url: "wss://tj4665vyr4.execute-api.eu-west-1.amazonaws.com/dev",
 });
 
 (async () => {

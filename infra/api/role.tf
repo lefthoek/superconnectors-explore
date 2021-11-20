@@ -2,6 +2,7 @@ locals {
   policies = [
     module.websockets.connections_table_access_policy,
     module.websockets.subscriptions_table_access_policy,
+    aws_iam_policy.api_gateway_access.arn
   ]
 }
 
