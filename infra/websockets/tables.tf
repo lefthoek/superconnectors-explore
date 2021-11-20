@@ -1,4 +1,4 @@
-resource "aws_dynamodb_table" "connections-table" {
+resource "aws_dynamodb_table" "connections_table" {
   name           = local.connections_table
   billing_mode   = "PROVISIONED"
   read_capacity  = 1
@@ -16,7 +16,7 @@ resource "aws_dynamodb_table" "connections-table" {
   }
 }
 
-resource "aws_dynamodb_table" "subscriptions-table" {
+resource "aws_dynamodb_table" "subscriptions_table" {
   name           = local.subscriptions_table
   billing_mode   = "PROVISIONED"
   read_capacity  = 1
