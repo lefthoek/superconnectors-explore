@@ -4,7 +4,7 @@ variable "TFC_WORKSPACE_NAME" {
 }
 
 locals {
-  project_prefix = "superconnectors"
+  project_prefix              = "superconnectors"
   lambda_basic_execution_role = "arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
   environment_name            = var.TFC_WORKSPACE_NAME != "" ? trimprefix(var.TFC_WORKSPACE_NAME, "superconnectors-") : terraform.workspace
 }
